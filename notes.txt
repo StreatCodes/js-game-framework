@@ -1,0 +1,10 @@
+input handler
+asset download handler
+game object
+    derive from this class
+    have empty functions for onkeydown, onkeyup, keypressed
+sprite / animated sprite handler
+initializer take main loop function
+camera, just offsets sprite positions
+timer module
+renderer module?
