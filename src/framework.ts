@@ -1,8 +1,22 @@
-module Framework {
-    let context: CanvasRenderingContext2D;
 
-    export function init(canvas: HTMLCanvasElement, mainLoop: Function) {
+    let context: CanvasRenderingContext2D;
+    //maybe wrong type for image
+    let spriteMap = new Map<String, ImageData>();
+
+    export function loadImage(url){
+        if(!spriteMap.has(url)){
+            //TODO load image here
+            //todo, xhr request maybe? maybe just JS new image(url)?
+        }
+
+        return spriteMap.get(url);
+    }
+
+    export function run(canvas: HTMLCanvasElement, mainLoop: Function) {
         context = canvas.getContext("2d");
+
+        requestAnimationFrame(this.run);
+        context.clearRect(0, 0, canvas.width, canvas.height);
 
         mainLoop();
     }
@@ -124,13 +138,36 @@ module Framework {
         }
 
         public draw(){
-
+            this.sprite.draw();
         }
     }
 
     export class Sprite {
+        private Image: ImageData;
+
         constructor(url: string, coords?: Object){
-            //url is a map
+            this.Image = loadImage(url)
+            //TODO coords
+        }
+
+        public draw(){
+            
         }
     }
-}
+
+    export module Time {
+        let time: number;
+        let prevTime: number;
+        let _dt: number;
+
+        export function update(){
+            prevTime = time;
+            time = new Date().getTime() / 1000.0;
+            _dt = time - prevTime;
+        }
+
+        //returns time since start of last frame
+        export function dt():number{
+            return _dt;
+        }
+    }
