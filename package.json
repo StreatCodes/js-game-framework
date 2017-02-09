@@ -17,9 +17,6 @@
   },
   "homepage": "https://github.com/StreatCodes/js-game-framework#readme",
   "devDependencies": {
-    "awesome-typescript-loader": "^3.0.3",
-    "rollup-watch": "^3.2.2",
-    "source-map-loader": "^0.1.6",
-    "typescript": "^2.1.5"
+    "rollup-watch": "^3.2.2"
   }
 }

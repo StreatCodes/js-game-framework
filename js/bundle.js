@@ -10,20 +10,23 @@ function update(){
 
 //returns time since start of last frame
 
-let context;
 let spriteMap = new Map();
 let loop$1;
 function loadImage(url){
     if(!spriteMap.has(url)){
-        //TODO load image here
-        //todo, xhr request maybe? maybe just JS new image(url)?
+        //todo improve
+        let img = new Image(); 
+        img.src = url;
+
+        spriteMap.set(url, img);
     }
 
     return spriteMap.get(url);
 }
 
 function init$1(canvas, init, mainLoop) {
-    context = document.getElementById("canvas").getContext("2d");
+    this.canvas = canvas;
+    this.context = canvas.getContext("2d");
 
     console.log("Hello");
     console.log(typeof mainLoop);
@@ -35,7 +38,7 @@ function init$1(canvas, init, mainLoop) {
 function run(){
     update();
     requestAnimationFrame(this.run);
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     loop$1();
 
     //draw something
@@ -47,21 +50,24 @@ function run(){
 class Sprite {
     constructor(context, url, x, y){
         this.context = context;
-        this.url = loadImage(url);
+        this.image = loadImage(url);
         this.x = x;
         this.y = y;
+
+        console.log(context);
         
         //TODO coords
     }
 
     draw(){
-        void context.drawImage(image, x, y, 100, 100);
+        this.context.drawImage(this.image, this.x, this.y, 100, 100);
         // dx, dy, dWidth, dHeight);
     }
 }
 
-let img = loadImage("/images/spritesheet-demo.png");
-let sprite = new Sprite(null, "/images/spritesheet-demo.png", 0, 0);
+let img = loadImage("images/spritesheet-demo.png");
+console.log(document.getElementById("canvas").getContext('2d'));
+let sprite = new Sprite(document.getElementById("canvas").getContext('2d'), "images/spritesheet-demo.png", 0, 0);
 
 function init$$1() {
 }

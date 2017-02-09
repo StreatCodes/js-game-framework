@@ -1,6 +1,7 @@
 import * as Input from './input';
 import * as Time from './time';
 
+let canvas;
 let context;
 let spriteMap = new Map();
 let loop;
@@ -8,15 +9,19 @@ let timer;
 
 export function loadImage(url){
     if(!spriteMap.has(url)){
-        //TODO load image here
-        //todo, xhr request maybe? maybe just JS new image(url)?
+        //todo improve
+        let img = new Image(); 
+        img.src = url;
+
+        spriteMap.set(url, img);
     }
 
     return spriteMap.get(url);
 }
 
 export function init(canvas, init, mainLoop) {
-    context = document.getElementById("canvas").getContext("2d");
+    this.canvas = canvas;
+    this.context = canvas.getContext("2d");
 
     console.log("Hello");
     console.log(typeof mainLoop);
@@ -28,7 +33,7 @@ export function init(canvas, init, mainLoop) {
 function run(){
     Time.update();
     requestAnimationFrame(this.run);
-    context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     loop();
 
     //draw something
@@ -52,15 +57,17 @@ export class GameObject {
 export class Sprite {
     constructor(context, url, x, y){
         this.context = context;
-        this.url = loadImage(url);
+        this.image = loadImage(url);
         this.x = x;
         this.y = y;
+
+        console.log(context);
         
         //TODO coords
     }
 
     draw(){
-        void context.drawImage(image, x, y, 100, 100);
+        this.context.drawImage(this.image, this.x, this.y, 100, 100);
         // dx, dy, dWidth, dHeight);
     }
 }
