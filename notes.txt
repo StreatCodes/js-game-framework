@@ -8,3 +8,5 @@ initializer take main loop function
 camera, just offsets sprite positions
 timer module
 renderer module?
+SCENES class, that we push to init, manages what is displayed.
+    we'll need our own little statemachine

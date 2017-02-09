@@ -1,0 +1,25 @@
+{
+  "name": "js-game-framework",
+  "version": "1.0.0",
+  "description": "Very light framework for creating HTML5 canvas based games.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StreatCodes/js-game-framework.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/StreatCodes/js-game-framework/issues"
+  },
+  "homepage": "https://github.com/StreatCodes/js-game-framework#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.0.3",
+    "rollup-watch": "^3.2.2",
+    "source-map-loader": "^0.1.6",
+    "typescript": "^2.1.5"
+  }
+}
