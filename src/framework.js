@@ -1,6 +1,8 @@
 import * as Input from './input';
 import * as Time from './time';
+import 'Victor';
 
+let vec = new Victor(100, 200);
 let canvas;
 let context;
 let spriteMap = new Map();
@@ -23,8 +25,6 @@ export function init(canvas, init, mainLoop) {
     this.canvas = canvas;
     this.context = canvas.getContext("2d");
 
-    console.log("Hello");
-    console.log(typeof mainLoop);
     loop = mainLoop;
     init();
     run();
@@ -32,11 +32,11 @@ export function init(canvas, init, mainLoop) {
 
 function run(){
     Time.update();
-    requestAnimationFrame(this.run);
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     loop();
 
     //draw something
+    requestAnimationFrame(this.run);
 }
 
 
@@ -55,14 +55,12 @@ export class GameObject {
 }
 
 export class Sprite {
-    constructor(context, url, x, y){
+    constructor(context, url, pos, cords){
         this.context = context;
         this.image = loadImage(url);
         this.x = x;
         this.y = y;
 
-        console.log(context);
-        
         //TODO coords
     }
 
