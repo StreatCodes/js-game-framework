@@ -1,8 +1,7 @@
 import * as Input from './input';
 import * as Time from './time';
-import 'Victor';
+import Victor from 'Victor';
 
-let vec = new Victor(100, 200);
 let canvas;
 let context;
 let spriteMap = new Map();
@@ -58,14 +57,14 @@ export class Sprite {
     constructor(context, url, pos, cords){
         this.context = context;
         this.image = loadImage(url);
-        this.x = x;
-        this.y = y;
+        this.pos = pos;
+        this.cords = cords;
 
         //TODO coords
     }
 
     draw(){
-        this.context.drawImage(this.image, this.x, this.y, 100, 100);
+        this.context.drawImage(this.image, this.pos.s, this.pos.y, this.cords.x, this.cords.y);
         // dx, dy, dWidth, dHeight);
     }
 }
