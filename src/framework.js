@@ -2,40 +2,40 @@ import * as Input from './input';
 import * as Time from './time';
 import Victor from 'Victor';
 
-let canvas;
-let context;
-let spriteMap = new Map();
-let loop;
-let timer;
+let _canvas;
+let _context;
+let _spriteMap = new Map();
+let _loop;
+let _timer;
 
 export function loadImage(url){
-    if(!spriteMap.has(url)){
+    if(!_spriteMap.has(url)){
         //todo improve
         let img = new Image(); 
         img.src = url;
 
-        spriteMap.set(url, img);
+        _spriteMap.set(url, img);
     }
 
-    return spriteMap.get(url);
+    return _spriteMap.get(url);
 }
 
 export function init(canvas, init, mainLoop) {
-    this.canvas = canvas;
-    this.context = canvas.getContext("2d");
+    _canvas = canvas;
+    _context = canvas.getContext("2d");
 
-    loop = mainLoop;
+    _loop = mainLoop;
     init();
     run();
 }
 
 function run(){
     Time.update();
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    loop();
+    _context.clearRect(0, 0, _canvas.width, _canvas.height);
+    _loop();
 
     //draw something
-    requestAnimationFrame(this.run);
+    requestAnimationFrame(run);
 }
 
 
@@ -64,7 +64,7 @@ export class Sprite {
     }
 
     draw(){
-        this.context.drawImage(this.image, this.pos.s, this.pos.y, this.cords.x, this.cords.y);
+        this.context.drawImage(this.image, this.pos.x, this.pos.y);
         // dx, dy, dWidth, dHeight);
     }
 }
