@@ -3,10 +3,9 @@ asset download handler
 game object
     derive from this class
     have empty functions for onkeydown, onkeyup, keypressed
-sprite / animated sprite handler
-initializer take main loop function
+sprite 
+    multiple animations on one sprite (map animation stack, set animations by string name)
 camera, just offsets sprite positions
-timer module
 renderer module?
 SCENES class, that we push to init, manages what is displayed.
     we'll need our own little statemachine
