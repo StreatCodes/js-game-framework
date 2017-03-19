@@ -1,4 +1,4 @@
-const Keys = {
+export const Keys = {
     backspace: 8,
     TAB: 9,
     ENTER: 13,
@@ -98,5 +98,42 @@ const Keys = {
     CLOSE_BRAKET: 221,
     SINGLE_QUOTE: 222
 }
+
+let keysDown = new Array(256); 
+let keysPressed = new Array(256); 
+let keysUp = new Array(256); 
+
+for(let i = 0; i < 256; i++){
+    keysDown[i] = false;
+    keysPressed[i] = false;
+    keysUp[i] = false;
+}
+
+export function update(){
+    for(let i = 0; i < 256; i++){
+        keysUp[i] = false;
+        keysDown[i] = false;
+    }
+}
+
+export function keyDown(keyCode){
+    return keysDown[keyCode];
+}
+export function keyPressed(keyCode){
+    return keysPressed[keyCode];
+}
+export function keyUp(keyCode){
+    return keysUp[keyCode];
+}
+
+document.addEventListener("keydown", (e) => {
+    keysDown[e.keyCode] = true;
+    keysPressed[e.keyCode] = true;
+});
+
+document.addEventListener("keyup", (e) => {
+    keysPressed[e.keyCode] = true;
+    keysUp[e.keyCode] = true;
+});
 
 //get mouse pos , do when renderer completed TODO
