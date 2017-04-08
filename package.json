@@ -4,7 +4,7 @@
   "description": "Very light framework for creating HTML5 canvas based games.",
   "main": "index.js",
   "scripts": {
-    "start": "babel src --out-file js/bundle.js --watch --source-maps",
+    "start": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,7 +20,9 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.0",
-    "babel-preset-es2015": "^6.24.0"
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.0",
+    "webpack": "^2.2.1"
   },
   "dependencies": {
     "victor": "^1.1.0"

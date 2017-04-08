@@ -2,6 +2,12 @@ import * as framework from './framework';
 import * as stateMachine from './state-machine';
 import Victor from 'Victor';
 
+let stop = false;
+
+window.addEventListener('keydown',(e)=>{
+    if(e.keyCode === 27) stop = true;
+});
+
 class GameScene extends stateMachine.Scene{
     init(){
         framework.loadImage("images/spritesheet-demo.png");
@@ -21,10 +27,11 @@ class GameScene extends stateMachine.Scene{
 
     update(){
         let v = new Victor(0, 0);
-        console.log(framework.Input.keyDown(framework.Input.Keys.A));
+        //console.log(framework.Input.keyDown(framework.Input.Keys.A));
         
         //v.addX()
         //this.player.pos.
+        if (stop === true) stateMachine.pop();
     }
 
     draw(){
